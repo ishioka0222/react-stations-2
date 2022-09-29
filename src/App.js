@@ -1,6 +1,8 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import Home from './routes/Home';
+import CreateThread from './routes/CreateThread';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
   const baseUrl = 'https://railway-react-bulletin-board.herokuapp.com';
@@ -18,19 +20,24 @@ function App() {
 
   return (
     <>
-      <nav className="bg-green-400 text-white p-5">
-        <div className="flex justify-between">
-          <div className="text-2xl">
-            <a href="/">掲示板</a>
+      <BrowserRouter>
+        <nav className="bg-green-400 text-white p-5">
+          <div className="flex justify-between">
+            <div className="text-2xl">
+              <Link to="/">掲示板</Link>
+            </div>
+            <div className="hover:underline">
+              <Link to="/thread/new">スレッドをたてる</Link>
+            </div>
           </div>
-          <div className="underline">
-            <a href="/">スレッドをたてる</a>
-          </div>
+        </nav>
+        <div className="container mx-auto w-6/12">
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/thread/new" element={<CreateThread />}></Route>
+          </Routes>
         </div>
-      </nav>
-      <div className="container mx-auto w-6/12">
-        <Home />
-      </div>
+      </BrowserRouter>
     </>
   );
 }

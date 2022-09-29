@@ -15,7 +15,7 @@ function Home() {
 
   return (
     <>
-      <h1 className="text-2xl p-3">新着スレッド</h1>
+      <h1 className="text-2xl">新着スレッド</h1>
       <ul>
         {threads.map((thread) => (
           <li
