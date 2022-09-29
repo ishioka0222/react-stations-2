@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 
 function Home() {
-  const baseUrl = 'https://railway-react-bulletin-board.herokuapp.com';
-  const endpoint = '/threads';
+  const endpoint = 'https://railway-react-bulletin-board.herokuapp.com/threads';
 
   const [threads, setThreads] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const response = await fetch(`${baseUrl}${endpoint}`);
+      const response = await fetch(endpoint);
       const data = await response.json();
       setThreads(data);
     })();
