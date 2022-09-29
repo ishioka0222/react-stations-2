@@ -1,24 +1,32 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react';
 
 function App() {
+  const baseUrl = 'https://railway-react-bulletin-board.herokuapp.com';
+  const endpoint = '/threads';
+
+  const [threads, setThreads] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch(`${baseUrl}${endpoint}`);
+      const data = await response.json();
+      setThreads(data);
+    })();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>新着スレッド</h1>
+      <ul>
+        {threads.map((thread) => (
+          <li key={thread.id}>
+            <a href={`/threads/${thread.id}`}>{thread.title}</a>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
 
