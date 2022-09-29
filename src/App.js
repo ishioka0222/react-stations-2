@@ -1,5 +1,6 @@
 import './App.css';
 import { useState, useEffect } from 'react';
+import Home from './routes/Home';
 
 function App() {
   const baseUrl = 'https://railway-react-bulletin-board.herokuapp.com';
@@ -28,17 +29,7 @@ function App() {
         </div>
       </nav>
       <div className="container mx-auto w-6/12">
-        <h1 className="text-2xl p-3">新着スレッド</h1>
-        <ul>
-          {threads.map((thread) => (
-            <li
-              key={thread.id}
-              className="bg-white border p-3 rounded border-gray-400"
-            >
-              <a href={`/threads/${thread.id}`}>{thread.title}</a>
-            </li>
-          ))}
-        </ul>
+        <Home />
       </div>
     </>
   );
